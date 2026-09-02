@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bonne fête, maman</title>
+<meta name="description" content="Une lettre pour les 50 ans de maman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Les emoji qui tombent sont ajoutés ici par script.js -->
+<div class="jardin" aria-hidden="true"></div>
+
+<main class="scene" id="scene">
+
+  <div class="plateau">
+
+    <!-- La fleur-lettre, cachée tant que l'enveloppe n'est pas ouverte -->
+    <div class="fleur" id="fleur" role="region" aria-label="La lettre" tabindex="-1">
+      <img class="fleur-image" src="images/fleur.png" alt="">
+      <div class="coeur"></div>
+
+      <!-- ============================================================
+           ÉCRIS TON MESSAGE ICI
+           Remplace le texte entre les balises par le tien.
+           Chaque <p> est un paragraphe.
+           ============================================================ -->
+      <div class="lettre">
+        <p class="lettre-entete">Bonne fête, maman</p>
+
+        <p>Cinquante ans, et toujours pas de mots assez grands
+        pour te dire merci.</p>
+
+        <p>J'espère que cette journée sera à ton image :
+        douce et pleine de monde qui t'aime.</p>
+
+        <p class="lettre-signature">Je t'aime<br>— ton fils</p>
+      </div>
+      <!-- ===================== FIN DU MESSAGE ===================== -->
+    </div>
+
+    <!-- L'enveloppe fermée -->
+    <button class="enveloppe" id="enveloppe" type="button" aria-expanded="false" aria-controls="fleur">
+      <span class="env-dos"></span>
+      <span class="env-rabat"></span>
+      <span class="env-poche"></span>
+      <span class="env-sceau">50</span>
+      <span class="hors-ecran">Ouvrir la lettre</span>
+    </button>
+
+  </div>
+
+  <div class="mention">
+    <p class="invite" id="invite">Touche l'enveloppe</p>
+    <button class="refermer" id="refermer" type="button">Refermer la lettre</button>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
