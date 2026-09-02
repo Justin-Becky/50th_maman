@@ -1,0 +1,340 @@
+/* ============================================================
+   Bonne fête maman — 50 ans
+   ============================================================ */
+
+:root {
+  --ciel: #d7ddf3;
+  --blush: #f7d3dd;
+  --beurre: #fceecd;
+  --sauge: #d3e2d1;
+  --encre: #4b3455;
+  --or: #bd9645;
+  --papier: #fffdf8;
+
+  --env-l: min(76vw, 330px);
+  --env-h: calc(var(--env-l) * 0.66);
+  --fleur: min(94vw, 560px);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Caveat", "Segoe Script", cursive;
+  color: var(--encre);
+  background:
+    radial-gradient(120% 90% at 12% 8%, var(--beurre), transparent 58%),
+    radial-gradient(100% 80% at 88% 18%, var(--blush), transparent 60%),
+    radial-gradient(120% 100% at 50% 100%, var(--sauge), transparent 62%),
+    var(--ciel);
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.hors-ecran {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Les emoji qui tombent ---------- */
+
+.jardin {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petale-vent {
+  position: fixed;
+  top: 0;
+  will-change: transform;
+  animation-name: chute;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  user-select: none;
+}
+
+@keyframes chute {
+  from { transform: translate3d(0, -14vh, 0) rotate(0deg); }
+  to   { transform: translate3d(var(--derive), 114vh, 0) rotate(var(--tour)); }
+}
+
+/* ---------- Mise en page ---------- */
+
+.scene {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vh, 2.5rem);
+  padding: 1rem;
+}
+
+.plateau {
+  display: grid;
+  place-items: center;
+  width: var(--fleur);
+  height: var(--fleur);
+}
+
+.plateau > * { grid-area: 1 / 1; }
+
+/* ---------- L'enveloppe ---------- */
+
+.enveloppe {
+  position: relative;
+  width: var(--env-l);
+  height: var(--env-h);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 1000px;
+  z-index: 3;
+  animation: flotte 5s ease-in-out infinite;
+  transition: opacity .55s ease .5s, transform .65s cubic-bezier(.5,0,.75,0) .5s;
+}
+
+@keyframes flotte {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -10px; }
+}
+
+.enveloppe:focus-visible {
+  outline: 3px solid var(--or);
+  outline-offset: 10px;
+  border-radius: 6px;
+}
+
+.env-dos, .env-rabat, .env-poche {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.env-dos {
+  z-index: 1;
+  background: #f3e6e9;
+  border-radius: 4px;
+  box-shadow: 0 18px 34px -14px rgba(90, 62, 78, .45);
+}
+
+.env-rabat {
+  z-index: 3;
+  height: 60%;
+  background: linear-gradient(175deg, #fbf1f3, #edd7de);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform .7s cubic-bezier(.62,0,.2,1), z-index 0s .35s;
+}
+
+.env-poche {
+  z-index: 4;
+  background: linear-gradient(160deg, #f7e9ec, #e9cfd8);
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 4px 4px;
+}
+
+.env-sceau {
+  position: absolute;
+  z-index: 5;
+  top: 46%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 3.6rem;
+  height: 3.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #e3c987, var(--or) 68%, #9c7830);
+  color: #fffdf8;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: .02em;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,.25), 0 4px 10px rgba(90,62,78,.3);
+  transition: opacity .25s ease, scale .25s ease;
+}
+
+/* ---------- La fleur-lettre ---------- */
+
+.fleur {
+  position: relative;
+  width: var(--fleur);
+  height: var(--fleur);
+  z-index: 6;
+  opacity: 0;
+  visibility: hidden;
+  scale: .14;
+  translate: 0 22%;
+  transition:
+    opacity .5s ease,
+    scale .95s cubic-bezier(.18,.85,.3,1),
+    translate .95s cubic-bezier(.18,.85,.3,1),
+    visibility 0s .95s;
+}
+
+.fleur-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fleur:focus-visible { outline: none; }
+
+.lettre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 55%;
+  max-height: 58%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  text-align: center;
+  font-size: clamp(1.05rem, 3.6vw, 1.45rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+  scrollbar-width: thin;
+  scrollbar-color: #e6c9d3 transparent;
+}
+
+.lettre p { margin: 0 0 .85em; }
+.lettre p:last-child { margin-bottom: 0; }
+
+.lettre-entete {
+  font-weight: 700;
+  font-size: 1.35em;
+  line-height: 1.15;
+  margin-bottom: .6em !important;
+}
+
+.lettre-signature {
+  margin-top: 1.1em !important;
+  color: #7a5a6b;
+}
+
+/* ---------- Texte sous le plateau ---------- */
+
+.mention {
+  position: relative;
+  height: 3.5rem;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.invite, .refermer { grid-area: 1 / 1; }
+
+.invite {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #6b5070;
+  transition: opacity .3s ease;
+}
+
+.refermer {
+  font-family: inherit;
+  font-size: 1.15rem;
+  color: #6b5070;
+  background: rgba(255, 253, 248, .72);
+  border: 1px solid #e2cdd6;
+  border-radius: 999px;
+  padding: .35rem 1.4rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease, visibility 0s .4s, background .2s ease;
+}
+
+.refermer:hover { background: var(--papier); }
+
+.refermer:focus-visible {
+  outline: 3px solid var(--or);
+  outline-offset: 3px;
+}
+
+/* ---------- État ouvert ---------- */
+
+.ouverte .env-rabat {
+  transform: rotateX(-172deg);
+  z-index: 1;
+}
+
+.ouverte .env-sceau {
+  opacity: 0;
+  scale: .6;
+}
+
+.ouverte .enveloppe {
+  opacity: 0;
+  transform: translateY(34%) scale(.88);
+  pointer-events: none;
+  animation: none;
+}
+
+.ouverte .fleur {
+  opacity: 1;
+  visibility: visible;
+  scale: 1;
+  translate: 0 0;
+  transition-delay: .42s, .42s, .42s, 0s;
+}
+
+.ouverte .invite {
+  opacity: 0;
+}
+
+.ouverte .refermer {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 1.15s, 1.15s, 0s;
+}
+
+/* ---------- Confettis à l'ouverture ---------- */
+
+.confetti {
+  position: fixed;
+  z-index: 7;
+  pointer-events: none;
+  font-size: 1.6rem;
+  animation: gicle .95s cubic-bezier(.2,.7,.4,1) forwards;
+}
+
+@keyframes gicle {
+  from { transform: translate(-50%, -50%) scale(.4); opacity: 1; }
+  to   { transform: translate(var(--dx), var(--dy)) scale(1.15) rotate(var(--rot)); opacity: 0; }
+}
+
+/* ---------- Écrans étroits ---------- */
+
+@media (max-width: 420px) {
+  .lettre { width: 60%; }
+  .env-sceau { width: 3rem; height: 3rem; font-size: 1.25rem; }
+}
+
+/* ---------- Mouvement réduit ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .enveloppe { animation: none; }
+
+  .fleur, .enveloppe, .env-rabat, .refermer, .invite, .env-sceau {
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .confetti { display: none; }
+}
