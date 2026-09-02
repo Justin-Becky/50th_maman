@@ -11,8 +11,4 @@ ouvrir et une lettre en forme de fleur.
 
 ## Bugs/Changes
 
-la forme de la lettre
 le texte de la lettre
-le bouton pour fermer la lettre
-rajouter des choses ?
-

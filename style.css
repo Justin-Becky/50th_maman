@@ -13,7 +13,8 @@
 
   --env-l: min(76vw, 330px);
   --env-h: calc(var(--env-l) * 0.66);
-  --fleur: min(94vw, 560px);
+  --fleur: min(96vw, 620px);
+  --coeur: 68%;
 }
 
 * { box-sizing: border-box; }
@@ -186,11 +187,26 @@ body {
     visibility 0s .95s;
 }
 
-.fleur-svg {
+.fleur-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(124, 90, 104, .22));
+}
+
+/* Le disque blanc: c'est la feuille de papier posée sur les pétales */
+.coeur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: var(--coeur);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--papier);
+  box-shadow: 0 2px 12px rgba(124, 90, 104, .18);
 }
 
 .fleur:focus-visible { outline: none; }
@@ -200,12 +216,12 @@ body {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 55%;
-  max-height: 58%;
+  width: 47%;
+  max-height: 46%;
   overflow-y: auto;
   overscroll-behavior: contain;
   text-align: center;
-  font-size: clamp(1.05rem, 3.6vw, 1.45rem);
+  font-size: clamp(1rem, 3.3vw, 1.35rem);
   line-height: 1.45;
   text-wrap: pretty;
   scrollbar-width: thin;
@@ -249,6 +265,7 @@ body {
 .refermer {
   font-family: inherit;
   font-size: 1.15rem;
+    z-index: 8;
   color: #6b5070;
   background: rgba(255, 253, 248, .72);
   border: 1px solid #e2cdd6;
@@ -321,8 +338,10 @@ body {
 
 /* ---------- Écrans étroits ---------- */
 
-@media (max-width: 420px) {
-  .lettre { width: 60%; }
+@media (max-width: 480px) {
+  /* Sur petit écran on agrandit le disque blanc pour gagner de la place */
+  :root { --coeur: 78%; }
+  .lettre { width: 54%; }
   .env-sceau { width: 3rem; height: 3rem; font-size: 1.25rem; }
 }
 
