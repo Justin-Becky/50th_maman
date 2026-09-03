@@ -11,4 +11,5 @@ ouvrir et une lettre en forme de fleur.
 
 ## Bugs/Changes
 
-le texte de la lettre
+Trouver une activité
+arranger la fleure sur cell

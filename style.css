@@ -341,7 +341,6 @@ body {
 @media (max-width: 480px) {
   /* Sur petit écran on agrandit le disque blanc pour gagner de la place */
   :root { --coeur: 78%; }
-  .lettre { width: 54%; }
   .env-sceau { width: 3rem; height: 3rem; font-size: 1.25rem; }
 }
 
