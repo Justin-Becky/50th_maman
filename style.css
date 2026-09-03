@@ -338,9 +338,10 @@ body {
 
 /* ---------- Écrans étroits ---------- */
 
-@media (max-width: 480px) {
+@media (max-width: 1480px) {
   /* Sur petit écran on agrandit le disque blanc pour gagner de la place */
-  :root { --coeur: 78%; }
+  :root { --coeur: 65%; }
+  .lettre { width: 50%; }
   .env-sceau { width: 3rem; height: 3rem; font-size: 1.25rem; }
 }
 
